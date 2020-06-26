@@ -1,0 +1,5 @@
+CIFAR-10 experement文件夹包含第一个子任务的代码，第一个子任务是在CIFAR-10数据集上训练一个高性能识别网络
+VGG_BatchNorm文件夹包含第二个子任务的代码，第二个子任务是使用VGG为示例，探究BN层的作用
+
+project_2.pdf是本次作业的详细描述
+report.pdf是作业报告
