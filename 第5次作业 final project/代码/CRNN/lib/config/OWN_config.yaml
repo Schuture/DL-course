@@ -1,0 +1,58 @@
+GPUID: 0
+WORKERS: 4
+PRINT_FREQ: 10
+SAVE_FREQ: 1
+PIN_MEMORY: True
+OUTPUT_DIR: './output'
+DEBUG_DIR: './output/debug'
+
+
+CUDNN:
+  BENCHMARK: True
+  DETERMINISTIC: False
+  ENABLED: True
+
+DATASET:
+  DATASET: OWN
+  CHANNEL: 3
+  TRAIN_ROOT: "/root/CYX_Space/data/train_text_img/"
+  TEST_ROOT: "/root/CYX_Space/data/test_text_img/"
+  JSON_FILE: {'train': 'lib/dataset/txt/train_own.txt', 'val': 'lib/dataset/txt/test_own.txt'}
+  SCALE_FACTOR: 0.25
+  ROT_FACTOR: 30
+  STD: 0.193
+  MEAN: 0.588
+  ALPHABETS: ''
+
+TRAIN:
+  BATCH_SIZE_PER_GPU: 32
+  SHUFFLE: True
+  BEGIN_EPOCH: 0
+  END_EPOCH: 100
+  RESUME:
+    IS_RESUME: False
+    FILE: "/root/CYX_Space/CRNN/output/OWN/crnn/2020-06-14-06-54/checkpoints/checkpoint_22_acc_0.2248.pth"
+  OPTIMIZER: 'adam' # sgd performs badly, adam is recommended
+  LR: 0.0001
+  WD: 0.0001
+  LR_STEP: [50, 80]
+  LR_FACTOR: 0.1
+  MOMENTUM: 0.9
+  NESTEROV: False
+  RMSPROP_ALPHA:
+  RMSPROP_CENTERED:
+
+TEST:
+  BATCH_SIZE_PER_GPU: 16
+  SHUFFLE: True
+  NUM_TEST: 1000 # how many batches of samples in testset will be used for validation
+  NUM_TEST_DISP: 10
+
+MODEL:
+  NAME: 'crnn'
+  IMAGE_SIZE:
+    H: 32        # height must be mutiple of 16
+    MAX_W: 256   # padding to fixed length
+  NUM_CLASSES: 0
+  NUM_HIDDEN: 256
+

@@ -1,0 +1,52 @@
+{
+    "name": "CYX从头联合训练",
+    "cuda": true,
+    "gpus": [0],
+    "finetune": "",
+    "need_grad_backbone": true,
+    "data_loader": {
+        "dataset":"mydataset",
+        "data_dir": "../data/test",
+        "use_test": false, 
+        "test_dir": "../data/test",
+        "batch_size": 2,
+        "shuffle": true,
+        "workers": 32
+    },
+    "validation": {
+        "validation_split": 0.20,
+        "shuffle": true
+    },
+
+    "lr_scheduler_type": "ExponentialLR",
+    "lr_scheduler_freq": 500,
+    "lr_scheduler": {
+            "gamma": 0.94
+    },
+
+    "optimizer_type": "Adam",
+    "optimizer": {
+        "lr": 0.001,
+        "weight_decay": 1e-5
+    },
+    "loss": "FOTSLoss",
+    "metrics": ["fots_metric"],
+    "trainer": {
+        "epochs": 2000,
+        "save_dir": "saved_model",
+        "save_freq": 1,
+        "verbosity": 2,
+        "monitor": "loss",
+        "monitor_mode": "min"
+    },
+    "arch": "FOTSModel",
+    "model": {
+        "mode": "united",
+        "scale": 512,
+        "crnn": {
+            "img_h": 8,
+            "hidden": 256
+        },
+        "keys": "DL_str"
+    }
+}

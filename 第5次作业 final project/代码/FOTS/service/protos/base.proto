@@ -1,0 +1,16 @@
+syntax = "proto3";
+// 定义OCR服务
+service OCR {
+  // 请求OCR识别
+  rpc detect_and_recognize (ImageRequest) returns (OCRResponse) {}
+  rpc detect (ImageRequest) returns (OCRResponse) {}
+  rpc recognize (ImageRequest) returns (OCRResponse) {}
+}
+
+message ImageRequest {
+  string image = 1; // base64
+}
+
+message OCRResponse {
+  string message = 1;
+}

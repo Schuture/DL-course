@@ -1,0 +1,16 @@
+{
+    "cuda": true,
+    "port": 10001,
+    "model_path": "/path/to/model",
+    "arch": "FOTSModel",
+    "need_grad_backbone": false,
+    "model": {
+        "mode": "united",
+        "scale": 512,
+        "crnn": {
+            "img_h": 16,
+            "hidden": 1024
+        },
+        "keys": "number_and_dot"
+    }
+}
